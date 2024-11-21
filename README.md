@@ -235,7 +235,7 @@ The simulations are implemented in Python using:
 ### How to Run
 1. Clone the repository:
    ```bash
-   git clone https://github.com/tarunsharma-financial-models/homework1.git
+   git clone [https://github.com/tarunsharma-financial-models/homework1.git](https://github.com/tarun2001sharma/Stochastic-Processes-and-Option-Pricing.git)
    ```
 2. Install dependencies:
    ```bash
