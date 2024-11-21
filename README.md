@@ -55,28 +55,69 @@ $$
 ### 2. Simulation of Black-Scholes Paths
 
 #### Theory
-The Black-Scholes model extends Brownian Motion to model the dynamics of an asset price $S_t$. Using the stochastic differential equation:
+The Black-Scholes model builds on the principles of Brownian Motion and models the dynamics of asset prices $S_t$ using a Geometric Brownian Motion (GBM). The GBM incorporates two key components:
+1. **Drift ($\mu$)**: The deterministic growth rate of the asset price.
+2. **Volatility ($\sigma$)**: The magnitude of randomness in price fluctuations, derived from Brownian Motion.
+
+The stochastic differential equation (SDE) governing the price dynamics is:
 
 $$
-\frac{dS_t}{S_t} = \mu dt + \sigma dW_t
+\frac{dS_t}{S_t} = \mu \, dt + \sigma \, dW_t
 $$
 
-The discretized solution for $S_t$ is:
+where:
+- $\mu$ is the drift (expected return of the asset),
+- $\sigma$ is the volatility (measure of uncertainty or risk),
+- $W_t$ is a Wiener process (Brownian Motion).
+
+The SDE can be solved analytically to give the closed-form solution for $S_t$:
 
 $$
-S_{t_{i+1}} = S_{t_i} \exp\left[\left(\mu - \frac{1}{2} \sigma^2\right)\delta t + \sigma\sqrt{\delta t} Z_i\right]
+S_t = S_0 \exp \left( \left( \mu - \frac{1}{2} \sigma^2 \right) t + \sigma W_t \right)
 $$
+
+In numerical simulations, time is discretized into $N$ steps with step size $\delta t$, allowing us to approximate the continuous dynamics:
+
+$$
+S_{t_{i+1}} = S_{t_i} \exp \left[ \left( \mu - \frac{1}{2} \sigma^2 \right) \delta t + \sigma \sqrt{\delta t} Z_i \right]
+$$
+
+Here:
+- $\delta t = \frac{T}{N}$ is the time step,
+- $Z_i \sim \mathcal{N}(0,1)$ are independent standard normal random variables,
+- $\mu - \frac{1}{2} \sigma^2$ is the drift adjustment term accounting for the variance effect in log-normal distribution.
+
+#### Key Properties of the Black-Scholes Model
+1. **Log-Normal Distribution**: The asset price $S_t$ follows a log-normal distribution:
+   $$ \ln(S_t) \sim \mathcal{N}\left(\ln(S_0) + \left(\mu - \frac{1}{2} \sigma^2\right)t, \, \sigma^2 t\right) $$
+2. **Expected Value**:
+   $$ \mathbb{E}[S_t] = S_0 e^{\mu t} $$
+3. **Variance**:
+   $$ \text{Var}(S_t) = S_0^2 e^{2\mu t} \left(e^{\sigma^2 t} - 1\right) $$
+
+These properties validate the model’s ability to capture the stochastic growth of asset prices while preserving the randomness introduced by market forces.
+
+---
 
 #### Tasks
-1. Simulate multiple paths of $S_t$ for:
-   - Initial price $S_0 = 100$
-   - Drift $\mu = 5\%$, Volatility $\sigma = 30\%$, Risk-free rate $r = 3\%$
-   - Daily time steps over one year ($T = 1$, $\delta t = 1/360$).
-2. Analyze the simulated paths to verify the geometric Brownian motion properties.
+1. Simulate multiple paths of $S_t$ under the following parameters:
+   - Initial price $S_0 = 100$,
+   - Drift $\mu = 5\%$,
+   - Volatility $\sigma = 30\%$,
+   - Risk-free rate $r = 3\%$,
+   - Time horizon $T = 1$ year,
+   - Daily time steps ($\delta t = 1/360$).
+
+2. Analyze:
+   - The geometric properties of the simulated paths,
+   - The influence of drift and volatility on asset price dynamics.
+
+---
 
 #### Insights
-- Asset prices exhibit exponential growth with added noise.
-- Volatility and drift directly influence the dispersion and trend of the paths.
+- Asset prices exhibit **exponential growth** modulated by stochastic fluctuations.
+- **Higher drift ($\mu$)** results in stronger upward trends, whereas **higher volatility ($\sigma$)** increases the spread and randomness of price paths.
+- The model captures realistic asset price behaviors observed in financial markets.
 
 ---
 
