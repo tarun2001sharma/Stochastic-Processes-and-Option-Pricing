@@ -32,6 +32,7 @@ Brownian Motion $W_t$, also called Wiener Process, is a key building block in st
 4. Continuous sample paths
 
 Discrete-time simulation uses:
+
 $$
 W_{t_{i+1}} = W_{t_i} + \sqrt{\delta t} Z_i, \quad Z_i \sim \mathcal{N}(0,1)
 $$
@@ -40,10 +41,10 @@ $$
 1. Implement a function `simulate_brownian_motion` to simulate multiple paths of $W_t$ over a given time horizon using a discrete approximation.
 2. For $20,000$ paths:
    - Estimate $E(W_t)$, the expected value at each time step.
-   - Compute $\sqrt{	ext{Var}(W_t)}$, the standard deviation.
+   - Compute $\sqrt{\text{Var}(W_t)}$, the standard deviation.
 3. Plot:
    - The estimated mean and standard deviation at each time step.
-   - Overlay theoretical values: $E(W_t) = 0$ and $\sqrt{	ext{Var}(W_t)} = \sqrt{t}$.
+   - Overlay theoretical values: $E(W_t) = 0$ and $\sqrt{\text{Var}(W_t)} = \sqrt{t}$.
 
 #### Insights
 - The simulated values validate the theoretical properties of Brownian Motion.
@@ -55,14 +56,15 @@ $$
 
 #### Theory
 The Black-Scholes model extends Brownian Motion to model the dynamics of an asset price $S_t$. Using the stochastic differential equation:
+
 $$
-rac{dS_t}{S_t} = \mu dt + \sigma dW_t
+\frac{dS_t}{S_t} = \mu dt + \sigma dW_t
 $$
+
 The discretized solution for $S_t$ is:
+
 $$
-S_{t_{i+1}} = S_{t_i} \exp\left[\left(\mu - rac{1}{2} \sigma^2
-ight)\delta t + \sigma\sqrt{\delta t} Z_i
-ight]
+S_{t_{i+1}} = S_{t_i} \exp\left[\left(\mu - \frac{1}{2} \sigma^2\right)\delta t + \sigma\sqrt{\delta t} Z_i\right]
 $$
 
 #### Tasks
@@ -82,10 +84,11 @@ $$
 
 #### Theory
 The price of a European call option is given by:
+
 $$
-C = e^{-rT} \mathbb{E}\left[\max(S_T - K, 0)
-ight]
+C = e^{-rT} \mathbb{E}\left[\max(S_T - K, 0)\right]
 $$
+
 Monte Carlo simulation is used to estimate this expectation by generating paths for $S_T$.
 
 #### Tasks
@@ -105,19 +108,21 @@ Monte Carlo simulation is used to estimate this expectation by generating paths 
 
 #### Theory
 Delta hedging replicates the option payoff using a portfolio:
+
 $$
 P_t = \Delta_t S_t + \phi_t B_t
 $$
+
 where:
-- $\Delta_t = rac{\partial C}{\partial S}$ adjusts for price sensitivity.
+- $\Delta_t = \frac{\partial C}{\partial S}$ adjusts for price sensitivity.
 - $B_t$ represents a bond component to balance the portfolio.
 
 #### Tasks
 1. Simulate daily portfolio values $P_t$ and compare with the theoretical option price $C_{BS}$ for various paths.
 2. Plot:
    - $P_t$ vs. $C_{BS}$
-   - Histogram of hedging errors $arepsilon_T = P_T - 	ext{Payoff}$
-   - Include mean $E(arepsilon_T)$ and variance $	ext{Var}(arepsilon_T)$ on plots.
+   - Histogram of hedging errors $\varepsilon_T = P_T - \text{Payoff}$
+   - Include mean $E(\varepsilon_T)$ and variance $\text{Var}(\varepsilon_T)$ on plots.
 
 #### Insights
 - Hedging errors arise from discretization and model assumptions.
@@ -151,9 +156,11 @@ Hedging errors depend on parameters like:
 #### Theory
 Volatility can be estimated via:
 1. **Historical Volatility**:
-   $$
-   	ext{Historical Volatility} = rac{360}{n} \sum_{i=1}^{n} (X_{t_i} - X_{t_{i-1}})^2
-   $$
+
+$$
+\text{Historical Volatility} = \frac{360}{n} \sum_{i=1}^{n} (X_{t_i} - X_{t_{i-1}})^2
+$$
+
 2. **Break-Even Volatility**: The volatility that perfectly hedges an at-the-money call.
 
 #### Tasks
