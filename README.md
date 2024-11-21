@@ -114,13 +114,6 @@ These properties validate the model’s ability to capture the stochastic growth
 
 ---
 
-#### Insights
-- Asset prices exhibit **exponential growth** modulated by stochastic fluctuations.
-- **Higher drift ($\mu$)** results in stronger upward trends, whereas **higher volatility ($\sigma$)** increases the spread and randomness of price paths.
-- The model captures realistic asset price behaviors observed in financial markets.
-
----
-
 ### 3. Pricing by Simulation
 
 #### Theory
