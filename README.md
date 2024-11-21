@@ -88,12 +88,20 @@ Here:
 - $\mu - \frac{1}{2} \sigma^2$ is the drift adjustment term accounting for the variance effect in log-normal distribution.
 
 #### Key Properties of the Black-Scholes Model
-1. **Log-Normal Distribution**: The asset price $S_t$ follows a log-normal distribution:
-   $$ \ln(S_t) \sim \mathcal{N}\left(\ln(S_0) + \left(\mu - \frac{1}{2} \sigma^2\right)t, \, \sigma^2 t\right) $$
-2. **Expected Value**:
-   $$ \mathbb{E}[S_t] = S_0 e^{\mu t} $$
-3. **Variance**:
-   $$ \text{Var}(S_t) = S_0^2 e^{2\mu t} \left(e^{\sigma^2 t} - 1\right) $$
+1. **Log-Normal Distribution**:  The asset price $S_t$ follows a log-normal distribution:  
+$$
+\ln(S_t) \sim \mathcal{N}\left(\ln(S_0) + \left(\mu - \frac{1}{2} \sigma^2\right)t, \sigma^2 t\right)
+$$
+
+2. **Expected Value**:  The expected value of $S_t$ is:  
+$$
+\mathbb{E}[S_t] = S_0 e^{\mu t}
+$$
+
+3. **Variance**:  The variance of $S_t$ is:  
+$$
+\text{Var}(S_t) = S_0^2 e^{2\mu t} \left(e^{\sigma^2 t} - 1\right)
+$$
 
 These properties validate the model’s ability to capture the stochastic growth of asset prices while preserving the randomness introduced by market forces.
 
